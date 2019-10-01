@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      function startTimer(seconds) {
+        seconds = parseInt(seconds) || 3;
+        setTimeout(function() { 
+          window.confirm("Time is up!");
+          window.history.back();
+        }, seconds * 1000);
+      }
+    </script>
+  </head>
+  <body id="level4">
+      <br>
+      <img src="/static/loading.gif" onerror="startTimer('{{ timer }}');" />
+      <br>
+    <div id="message">Your timer will execute in {{ timer }} seconds.</div>
+  </body>
+</html>
