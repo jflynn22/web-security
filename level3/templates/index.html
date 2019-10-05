@@ -9,6 +9,10 @@
     <script>
       function chooseTab(num) {
         // Dynamically load the appropriate image.
+        console.log(num, typeof(num))
+        if (isNaN(num)) {
+          return
+        }
         var html = "Image " + parseInt(num) + "<br>";
         html += "<img src='/static/images/cloud" + num + ".jpg' />";
         $('#tabContent').html(html);
