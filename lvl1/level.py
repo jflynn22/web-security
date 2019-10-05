@@ -13,7 +13,7 @@ def fix(input_string):
     return input_string
 
 app = Flask(__name__)
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def render():
     arg = ''
     if request.method == 'GET':

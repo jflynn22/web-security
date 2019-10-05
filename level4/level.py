@@ -13,9 +13,16 @@ def render():
             r = make_response(render_template('index.html'))
             r.headers.set("X-XSS-Protection", "0")
         else:
+            try:
+                int(arg)
+            except ValueError:
+                print("Invalid Input")
+                r = make_response(render_template('index.html'))
+                r.headers.set("X-XSS-Protection", "0")
+                return r
+            
             r = make_response(render_template('timer.html', timer = arg))
             r.headers.set("X-XSS-Protection", "0")
-            # timer= self.request.get('timer', 0)
         return r
 
 
