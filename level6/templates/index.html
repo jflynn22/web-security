@@ -4,7 +4,10 @@
  
     <script>
     function setInnerText(element, value) {
-      if (element.innerText) {
+      if (element === null) {
+        return
+      }
+      else if (element.innerText) {
         element.innerText = value;
       } else {
         element.textContent = value;
@@ -13,11 +16,11 @@
  
     function includeGadget(url) {
       var scriptEl = document.createElement('script');
- 
+      console.log(url)
       // This will totally prevent us from loading evil URLs!
-      if (url.match(/^https?:\/\//)) {
+      if (url.match(/^https?:\/\//) || url.includes('//') || url.includes('www')) {
         setInnerText(document.getElementById("log"),
-          "Sorry, cannot load a URL containing \"http\".");
+          "Sorry, cannot load a URL containing dangerous characters.");
         return;
       }
  
