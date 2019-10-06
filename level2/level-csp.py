@@ -8,7 +8,7 @@ def render():
     if request.method == 'GET':
         r = make_response(render_template('index-csp.html'))
         r.headers.set("X-XSS-Protection", "0")
-        r.headers['Content-Security-Policy'] = "media-src 'none'"
+        r.headers['Content-Security-Policy'] = "script-src 'self'"
         return r
 
 if __name__=='__main__':
