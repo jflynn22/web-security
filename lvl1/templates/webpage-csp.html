@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </head>
+
+  <body id="level1">
+      <div>
+        <form action="" method="GET">
+            <input id="query" name="query" value="Enter query here..."
+                >
+            <input id="button" type="submit" value="Search">
+        </form>
+        </div>
+        <h1>
+          Sorry no results found for 
+          <b>
+            {{arg}}
+          </b>
+        </h1>
+      <script src="{{ url_for('static', filename='focus.js')}}"></script>
+    </body>
+</html>

@@ -8,9 +8,9 @@ def render():
     if request.method == 'GET':
         arg = request.args.get('query', '')
         arg = Markup(arg.encode("utf-8"))
-        r = make_response(render_template('webpage.html', arg = arg))
+        r = make_response(render_template('webpage-csp.html', arg = arg))
         r.headers.set("X-XSS-Protection", "0")
-        r.headers['Content-Security-Policy'] = "script-src 'self'"
+        r.headers['Content-Security-Policy'] = "script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
         return r
 
 

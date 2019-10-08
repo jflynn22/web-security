@@ -3,13 +3,6 @@ import flask
 
 current_page = 'welcome'
 
-def fix(arg):
-    print(arg)
-    if ("javascript" in arg or "java" in arg):
-        return 'confirm'
-    else:
-        return arg
-
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def render():
@@ -18,23 +11,21 @@ def render():
     if request.method == 'GET':
         if current_page == "signup":
             arg = request.args.get('next', '')
-            arg = Markup(arg.encode("utf-8"))
-            arg = fix(arg)
+            print(arg)
             r = make_response(render_template('signup.html', next = arg))
             r.headers.set("X-XSS-Protection", "0")
             current_page = 'confirm'
         elif current_page == 'confirm':
             arg = request.args.get('next', 'welcome')
-            arg = Markup(arg.encode("utf-8"))
-            arg = fix(arg)
-            r = make_response(render_template('confirm.html', next = arg))
+            print(arg)
+            r = make_response(render_template('confirm-csp-3.html', next = arg))
             r.headers.set("X-XSS-Protection", "0")
             current_page = 'welcome'
         else:
             r = make_response(render_template('welcome.html'))
             r.headers.set("X-XSS-Protection", "0")
             current_page = 'signup'
-        r.headers['Content-Security-Policy'] = "script-src 'self'"
+        r.headers['Content-Security-Policy'] = "script-src 'nonce-ycIG83BS8AZX6e3RXTwOUw'"
         return r
 
 

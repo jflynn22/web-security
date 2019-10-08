@@ -1,6 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Load jQuery -->
+    <script
+      src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <script nonce="eCemQcnSszEjp4JzKsxeMQ">
       function chooseTab(num) {
         // Dynamically load the appropriate image.
         //This is the fix
+        if (isNaN(num)) {
+          return
+        }
         var html = "Image " + parseInt(num) + "<br>";
         html += "<img src='/static/images/cloud" + num + ".jpg' />";
         $('#tabContent').html(html);
@@ -31,9 +42,18 @@
           chooseTab(unescape(self.location.hash.substr(1)));
         }
       }, false);
-
-      $(document).ready(() => {
-        $("#tab1").click(chooseTab('1'))
-        $("#tab2").click(chooseTab('2'))
-        $("#tab3").click(chooseTab('3'))
-      })
+    </script>
+ 
+  </head>
+  <body id="level3">
+    <div id="header">
+      <span>Take a tour of our cloud data center.</a>
+    </div>
+ 
+    <div class="tab" id="tab1" onclick="chooseTab('1')">Image 1</div>
+    <div class="tab" id="tab2" onclick="chooseTab('2')">Image 2</div>
+    <div class="tab" id="tab3" onclick="chooseTab('3')">Image 3</div>
+ 
+    <div id="tabContent"> </div>
+  </body>
+</html>
