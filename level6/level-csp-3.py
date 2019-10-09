@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def render():
     r = make_response(render_template('index-csp-3.html'))
-    r.headers["Content-Security-Policy"] = "script-src 'nonce-bbl6ceOaqCihxVvbXzCwLg'"
+    r.headers["Content-Security-Policy"] = "script-src 'nonce-bbl6ceOaqCihxVvbXzCwLg' http://127.0.0.1:5000/static/gadget.js"
     r.headers.set("X-XSS-Protection", "0")
     return r
 

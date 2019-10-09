@@ -7,7 +7,7 @@ def render():
     arg = ''
     if request.method == 'GET':
         arg = request.args.get('timer', '')
-        arg = Markup(arg.encode("utf-8"))
+        # arg = Markup(arg.encode("utf-8"))
         print(arg)
         if (arg == ''):
             r = make_response(render_template('index.html'))

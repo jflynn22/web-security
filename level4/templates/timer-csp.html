@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </head>
+  <body id="level4">
+      <br>
+      <img id="image" src="/static/loading.gif"  />
+      <br>
+      <meta name="timerdata" content={{timer}}/>
+      <script src="{{ url_for('static', filename='timer.js')}}">
+      </script>
+    <div id="message">Your timer will execute in {{ timer }} seconds.</div>
+  </body>
+</html>

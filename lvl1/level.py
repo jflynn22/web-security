@@ -6,11 +6,11 @@ This is the fix
 '''
 def fix(input_string):
     for letter in input_string:
-        print(letter)
         if letter == '<':
             input_string = input_string.replace(letter, '&lt')
         elif letter == '>':
             input_string = input_string.replace(letter, '&rt')
+    print(input_string)
     return input_string
 
 app = Flask(__name__)

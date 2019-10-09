@@ -1,42 +1,34 @@
 from flask import Flask, request, render_template, make_response, Markup
 import flask
 
-current_page = 'welcome'
-
-def fix(arg):
-    print(arg)
-    if ("javascript" in arg or "java" in arg):
-        return 'confirm'
-    else:
-        return arg
-
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
-def render():
-    global current_page
-    arg = ''
-    if request.method == 'GET':
-        if current_page == "signup":
-            arg = request.args.get('next', '')
-            arg = Markup(arg.encode("utf-8"))
-            arg = fix(arg)
-            r = make_response(render_template('signup.html', next = arg))
-            r.headers.set("X-XSS-Protection", "0")
-            current_page = 'confirm'
-        elif current_page == 'confirm':
-            arg = request.args.get('next', 'welcome')
-            arg = Markup(arg.encode("utf-8"))
-            arg = fix(arg)
-            r = make_response(render_template('confirm.html', next = arg))
-            r.headers.set("X-XSS-Protection", "0")
-            current_page = 'welcome'
-        else:
-            r = make_response(render_template('welcome.html'))
-            r.headers.set("X-XSS-Protection", "0")
-            current_page = 'signup'
-        r.headers['Content-Security-Policy'] = "script-src 'self'"
-        return r
+def render_welcome():
+    # Route the request to the appropriate template
+    r = make_response(render_template('welcome.html'))
+    r.headers['Content-Security-Policy'] = "script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+    return r
 
+@app.route('/welcome', methods=['GET', 'POST'])
+def render_welcome_again():
+    # Route the request to the appropriate template
+    r = make_response(render_template('welcome.html'))
+    r.headers['Content-Security-Policy'] = "script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+    return r
+
+@app.route('/signup', methods=['GET', 'POST'])
+def render_signup():
+    arg = request.args.get('next')
+    r = make_response(render_template('signup.html', next = arg))
+    r.headers['Content-Security-Policy'] = "script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+    return r
+
+@app.route('/confirm', methods=['GET', 'POST'])
+def render_confirm():
+    arg = request.args.get('next', 'welcome')
+    r = make_response(render_template('confirm-csp.html', next = arg))
+    r.headers['Content-Security-Policy'] = "script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+    return r
 
 if __name__=='__main__':
     app.run(debug=True)
