@@ -13,8 +13,11 @@
   </head>
   <body id="level4">
       <br>
-      <img id='image' src="/static/loading.gif" onload="startTimer('{{ timer }}');" />
-      <script nonce='tyVzu4RLVwqpsJ3Nw34dpA'>document.getElementById('image').onload =startTimer('{{ timer }}'); </script>
+      <img id='image' src="/static/loading.gif"  />
+      <div>{{timer}}</div>
+      <script nonce='tyVzu4RLVwqpsJ3Nw34dpA'>
+      document.getElementById('image').onload = `${startTimer('{{ timer }}')}`;
+      </script>
       <br>
     <div id="message">Your timer will execute in {{ timer }} seconds.</div>
   </body>

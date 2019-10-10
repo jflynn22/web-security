@@ -7,7 +7,7 @@ def render():
     if request.method == 'GET':
         r = make_response(render_template('index-csp-3.html'))
         r.headers.set("X-XSS-Protection", "0")
-        r.headers['Content-Security-Policy'] = "script-src 'nonce-eCemQcnSszEjp4JzKsxeMQ' 'nonce-urGgvnlVAB0V4oLKkwrQaQ' 'unsafe-eval' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+        r.headers['Content-Security-Policy'] = "script-src 'nonce-eCemQcnSszEjp4JzKsxeMQ' 'nonce-urGgvnlVAB0V4oLKkwrQaQ' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
         return r
 
 

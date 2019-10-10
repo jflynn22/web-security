@@ -9,6 +9,5 @@ function startTimer(timer){
 $(document).ready(function() {
   let timer = $('[name="timerdata"]').attr("content")
   timer = timer.substring(0, timer.length-1)
-  console.log(timer)
-    $("#image").load("startTimer('{{ timer }}');")
+    $("#image").load(startTimer(timer))
   })

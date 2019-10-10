@@ -13,7 +13,6 @@ def render():
             r.headers.set("X-XSS-Protection", "0")
         else:
             print(arg)
-            arg = Markup(arg.encode('utf-8'))
             r = make_response(render_template('timer-csp-3.html', timer = arg))
             r.headers["Content-Security-Policy"] = "script-src 'nonce-LHkHnVoKDfNINMT5iWQtpw' 'nonce-tyVzu4RLVwqpsJ3Nw34dpA'"
             r.headers.set("X-XSS-Protection", "0")

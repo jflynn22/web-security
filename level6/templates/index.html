@@ -18,7 +18,7 @@
       var scriptEl = document.createElement('script');
       console.log(url)
       // This will totally prevent us from loading evil URLs!
-      if (url.match(/^https?:\/\//) || url.includes('//') || url.includes('www')) {
+      if (url.match(/^https?:\/\//) || url.includes('//') || url.includes('www') || url.includes('http')) {
         setInnerText(document.getElementById("log"),
           "Sorry, cannot load a URL containing dangerous characters.");
         return;

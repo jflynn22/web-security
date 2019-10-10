@@ -13,7 +13,7 @@ def render():
             r.headers.set("X-XSS-Protection", "0")
         else:
             print(arg)
-            r = make_response(render_template('timer.html', timer = arg))
+            r = make_response(render_template('timer-csp.html', timer = arg))
             r.headers["Content-Security-Policy"] = "script-src 'self' http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
             r.headers.set("X-XSS-Protection", "0")
         return r
